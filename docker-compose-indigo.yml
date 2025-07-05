@@ -1,6 +1,6 @@
 services:
   indigo:
-    image: indiserver:latest
+    image: waffleer/indigoserver:v1.0
     container_name: indigoserver
     command: indigo_ccd_asi indigo_mount_synscan indigo_ccd_ptp
     restart: always
