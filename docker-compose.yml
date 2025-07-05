@@ -1,8 +1,8 @@
 services:
   indi:
-    image: seanhoughton/rpi-indiserver:1.3.1 # rpi
+    image: indiserver:latest
     container_name: indiserver
-    # command: indi_sbig_ccd indi_qhy_ccd indi_robo_focus indi_lx200gemini
+    command: indi_synscanlegacy_telescope indi_asi_ccd indi_nikon_ccd
     restart: always
     privileged: true
     volumes:
