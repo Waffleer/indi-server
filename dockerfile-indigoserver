@@ -1,0 +1,19 @@
+# https://github.com/seanhoughton/indi-docker
+
+FROM ubuntu
+
+# Prerequisits
+RUN apt-get update && apt-get install -y git build-essential autoconf autotools-dev libtool cmake libudev-dev libavahi-compat-libdnssd-dev libusb-1.0-0-dev libcurl4-gnutls-dev libz-dev git curl bsdmainutils bsdextrautils patchelf
+
+# Remove unessisary apt package
+RUN apt-get remove -y libraw1394-dev
+
+# Get Repo and Build
+RUN mkdir /indigo
+RUN git clone https://github.com/indigo-astronomy/indigo.git /indigo --depth 1
+
+RUN make patchlib -C /indigo/indigo_drivers/ccd_qhy/bin_externals/pthread_yield_compat/
+RUN make all -C /indigo
+
+# EXPOSE 7624
+ENTRYPOINT ["build/bin/indigo_server", "-v"]
