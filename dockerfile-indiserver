@@ -1,0 +1,10 @@
+# https://github.com/seanhoughton/indi-docker
+
+FROM ubuntu
+
+RUN apt-get update && apt-get install -y software-properties-common
+RUN apt-get update && add-apt-repository ppa:mutlaqja/ppa
+RUN apt-get update && apt-get install -y indi-bin indi-full libxisf-dev indi-gphoto indi-asi
+
+EXPOSE 7624
+ENTRYPOINT ["/usr/bin/indiserver", "-v"]
