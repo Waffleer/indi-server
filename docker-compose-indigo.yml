@@ -1,0 +1,12 @@
+services:
+  indigo:
+    image: indiserver:latest
+    container_name: indigoserver
+    command: indigo_ccd_asi indigo_mount_synscan indigo_ccd_ptp
+    restart: always
+    privileged: true
+    volumes:
+      - /dev/bus/usb:/dev/bus/usb
+      - /dev/ttyUSB0:/dev/ttyUSB0
+    ports:
+      - 7624:7624
